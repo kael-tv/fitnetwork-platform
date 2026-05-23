@@ -14,6 +14,8 @@ import java.time.LocalDateTime;
 @Entity
 public class User {
 
+        ///TODO annotations relations SQL
+
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;

@@ -3,6 +3,7 @@ package com.fitnetwork.user_service.dto;
 import com.fitnetwork.user_service.model.User;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -10,6 +11,7 @@ public class UserProfileResponseDto {
 
         private String email;
         private String username;
+        private LocalDate birthdayDate;
         private Integer ageComputed;
         private Double height;
         private Double weight;
