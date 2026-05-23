@@ -1,6 +1,6 @@
 package com.fitnetwork.user_service.exception;
 
-import com.example.patients.response.ApiResponse;
+import com.fitnetwork.user_service.response.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
-public class GlobalExceptionHandler { ///TODO Expliquer ligne par ligne
+public class GlobalExceptionHandler { ///TODO commentaires
 
         @ExceptionHandler(ResourceNotFoundException.class)
         public ResponseEntity<ApiResponse<Void>> handleNotFound(ResourceNotFoundException ex) {
