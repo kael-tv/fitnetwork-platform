@@ -4,14 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 ///TODO
-///
 /// CRUD Service
 /// Controller
-/// GlobalExceptionHandler
-/// Tests rapides si besoin
-///
 /// Entity SQL annotations
-/// test DTO
+/// DTO admin?
 @SpringBootApplication
 public class UserServiceApplication {
 
