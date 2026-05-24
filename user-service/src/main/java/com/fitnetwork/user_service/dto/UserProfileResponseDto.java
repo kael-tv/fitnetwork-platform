@@ -20,6 +20,7 @@ public class UserProfileResponseDto {
         private String avatarUrl;
         private String statusMessage;
         private Boolean profileVisibility;
+        private User.Role role;
         private LocalDateTime createdAt;
 
 

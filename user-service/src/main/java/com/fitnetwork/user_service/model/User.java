@@ -31,7 +31,7 @@ public class User {
         private String statusMessage;
         private Boolean profileVisibility;
         private Role role;
-        private Boolean isBanned;
+        private boolean isBanned; //Because Boolean can be null
         private LocalDateTime createdAt;
 
         //Nested classes"

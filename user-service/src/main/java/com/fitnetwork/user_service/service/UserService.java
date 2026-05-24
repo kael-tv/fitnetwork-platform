@@ -43,6 +43,11 @@ public class UserService {
                 return userMapper.toPublicResponseDto(user);
         }
 
+        //Create
+
+
+
+
 
 
 
@@ -56,15 +61,33 @@ public class UserService {
         }
 
         //CREATE
+        public UserProfileResponseDto addUser(UserUpdateRequestDto dto) {
+                User user = userMapper.toEntity(dto);
+                return userMapper.toProfileResponseDto(userRepository.save(user));
+        }
+
+
         //UPDATE
-//        public UserProfileResponseDto updateUser(Long id, UserUpdateRequestDto dto) {
-//                User existing = userRepository.findById(id)
-//                        .orElseThrow(()-> new ResourceNotFoundException("User not found with id: " + id));
-//
-//                ///TODO
-//        }
+        public UserProfileResponseDto updateUser(Long id, UserUpdateRequestDto dto) {
+                User existing = userRepository.findById(id)
+                        .orElseThrow(()-> new ResourceNotFoundException("User not found with id: " + id));
+                existing.setUsername(dto.getUsername());
+                existing.setBirthdayDate(dto.getBirthdayDate());
+                existing.setHeight(dto.getHeight());
+                existing.setWeight(dto.getWeight());
+                existing.setGender(dto.getGender());
+                existing.setLevel(dto.getLevel());
+                existing.setAvatarUrl(dto.getAvatarUrl());
+                existing.setStatusMessage(dto.getStatusMessage()); ///TODO WIP
+
+                return userMapper.toProfileResponseDto(userRepository.save(existing));
+        }
 
         //DELETE
+        public void deleteById(Long id) {
+                userRepository.findById(id)
+                        .orElseThrow(()-> new ResourceNotFoundException("User not found with id: " + id));
+        }
 
 
 
