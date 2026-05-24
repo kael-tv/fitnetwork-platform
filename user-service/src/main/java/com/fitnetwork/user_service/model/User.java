@@ -30,12 +30,14 @@ public class User {
         private String avatarUrl;
         private String statusMessage;
         private Boolean profileVisibility;
+        private Role role;
         private Boolean isBanned;
         private LocalDateTime createdAt;
 
         //Nested classes"
         public enum Level {BEGINNER, INTERMEDIATE, ADVANCED}
         public enum Gender {Female, Male, Other}
+        public enum Role{Admin, User}
 
 
 
