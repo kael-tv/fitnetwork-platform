@@ -38,22 +38,23 @@ public class userMapper {
                 return dto;
         }
 
-        public UserProfileResponseDto toProfileResponseDto (User user) {
+        public UserProfileResponseDto toProfileResponseDto(User user) {
                 UserProfileResponseDto dto = new UserProfileResponseDto();
-                        dto.setEmail(user.getEmail());
-                        dto.setUsername(user.getUsername());
-                        dto.setBirthdayDate(user.getBirthdayDate());
-                        dto.setAgeComputed(calculateAge(user.getBirthdayDate()));
-                        dto.setHeight(user.getHeight());
-                        dto.setWeight(user.getWeight());
-                        dto.setGender(user.getGender());
-                        dto.setLevel(user.getLevel());
-                        dto.setAvatarUrl(user.getAvatarUrl());
-                        dto.setStatusMessage(user.getStatusMessage());
-                        dto.setProfileVisibility(user.getProfileVisibility());
-                        dto.setCreatedAt(user.getCreatedAt());
+                dto.setEmail(user.getEmail());
+                dto.setUsername(user.getUsername());
+                dto.setBirthdayDate(user.getBirthdayDate());
+                dto.setAgeComputed(calculateAge(user.getBirthdayDate()));
+                dto.setHeight(user.getHeight());
+                dto.setWeight(user.getWeight());
+                dto.setGender(user.getGender());
+                dto.setLevel(user.getLevel());
+                dto.setAvatarUrl(user.getAvatarUrl());
+                dto.setStatusMessage(user.getStatusMessage());
+                dto.setProfileVisibility(user.getProfileVisibility());
+                dto.setCreatedAt(user.getCreatedAt());
+                dto.setRole(user.getRole());
 
-                        return dto;
+                return dto;
 
         }
 
