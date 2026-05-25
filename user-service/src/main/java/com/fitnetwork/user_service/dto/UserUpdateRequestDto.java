@@ -1,8 +1,9 @@
 package com.fitnetwork.user_service.dto;
 
 import com.fitnetwork.user_service.model.User;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -16,8 +17,13 @@ public class UserUpdateRequestDto {
         @Pattern(regexp = "^[a-zA-Z_]+$", message = "Username can only contain letters, numbers and underscores")
         private String username;
 
+        @Past
         private LocalDate birthdayDate;
+
+        @Positive
         private Double height;
+
+        @Positive
         private Double weight;
         private User.Gender gender;
         private User.Level level;
