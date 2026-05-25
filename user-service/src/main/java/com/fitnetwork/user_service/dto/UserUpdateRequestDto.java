@@ -17,7 +17,6 @@ public class UserUpdateRequestDto {
         @Pattern(regexp = "^[a-zA-Z_]+$", message = "Username can only contain letters, numbers and underscores")
         private String username;
 
-        @Past
         private LocalDate birthdayDate;
 
         @Positive
