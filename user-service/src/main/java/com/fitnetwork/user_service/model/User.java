@@ -1,10 +1,7 @@
 package com.fitnetwork.user_service.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -25,19 +22,25 @@ public class User {
         private LocalDate birthdayDate;
         private Double height;
         private Double weight;
+
+        @Enumerated(EnumType.STRING)
         private Gender gender;
+
+        @Enumerated(EnumType.STRING)
         private Level level;
         private String avatarUrl;
         private String statusMessage;
         private Boolean profileVisibility;
+
+        @Enumerated(EnumType.STRING)
         private Role role;
         private boolean isBanned; //Because Boolean can be null
         private LocalDateTime createdAt;
 
         //Nested classes"
         public enum Level {BEGINNER, INTERMEDIATE, ADVANCED}
-        public enum Gender {Female, Male, Other}
-        public enum Role{Admin, User}
+        public enum Gender {FEMALE, MALE, OTHER}
+        public enum Role{ADMIN, USER}
 
 
 

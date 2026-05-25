@@ -4,7 +4,7 @@ import com.fitnetwork.user_service.dto.UserProfileResponseDto;
 import com.fitnetwork.user_service.dto.UserPublicResponseDto;
 import com.fitnetwork.user_service.dto.UserUpdateRequestDto;
 import com.fitnetwork.user_service.exception.ResourceNotFoundException;
-import com.fitnetwork.user_service.mapper.userMapper;
+import com.fitnetwork.user_service.mapper.UserMapper;
 import com.fitnetwork.user_service.model.User;
 import com.fitnetwork.user_service.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -20,10 +20,10 @@ public class UserService {
 
         //Bean Injection
         private final UserRepository userRepository;
-        private final userMapper userMapper;
+        private final UserMapper userMapper;
 
 
-        public UserService(UserRepository userRepository, userMapper userMapper) {
+        public UserService(UserRepository userRepository, UserMapper userMapper) {
                 this.userRepository = userRepository;
                 this.userMapper = userMapper;
         }
@@ -78,7 +78,7 @@ public class UserService {
                 existing.setGender(dto.getGender());
                 existing.setLevel(dto.getLevel());
                 existing.setAvatarUrl(dto.getAvatarUrl());
-                existing.setStatusMessage(dto.getStatusMessage()); ///TODO WIP
+                existing.setStatusMessage(dto.getStatusMessage());
 
                 return userMapper.toProfileResponseDto(userRepository.save(existing));
         }
@@ -87,6 +87,7 @@ public class UserService {
         public void deleteById(Long id) {
                 userRepository.findById(id)
                         .orElseThrow(()-> new ResourceNotFoundException("User not found with id: " + id));
+                userRepository.deleteById(id);
         }
 
 

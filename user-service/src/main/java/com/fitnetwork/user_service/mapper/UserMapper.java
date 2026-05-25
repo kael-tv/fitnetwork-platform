@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.time.Period;
 
 @Component
-public class userMapper {
+public class UserMapper {
 
         public User toEntity(UserUpdateRequestDto dto) {
                 User user = new User();
