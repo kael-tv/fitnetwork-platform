@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 ///TODO
 /// CRUD Service
 /// Controller
+/// Validation
 /// Entity SQL annotations
 /// DTO admin?
 @SpringBootApplication
