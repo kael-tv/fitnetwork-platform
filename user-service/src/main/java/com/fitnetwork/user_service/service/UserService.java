@@ -60,6 +60,12 @@ public class UserService {
                         .collect(Collectors.toList());
         }
 
+        public UserProfileResponseDto getProfileById(Long id) {
+                User user = userRepository.findById(id)
+                        .orElseThrow(()-> new ResourceNotFoundException("User not found with id: " + id));
+                return userMapper.toProfileResponseDto(user);
+        }
+
         //CREATE
         public UserProfileResponseDto addUser(UserUpdateRequestDto dto) {
                 User user = userMapper.toEntity(dto);
