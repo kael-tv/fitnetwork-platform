@@ -1,0 +1,104 @@
+services:
+  config-server:
+    image: kael/fitnetwork-config-server
+    mem_limit: 700m
+    container_name: config-server
+    restart: on-failure
+    ports:
+      - "8071:8071"
+    networks:
+      - fitnetwork-network
+    environment:
+      GIT_USERNAME: ${GIT_USERNAME}
+      GIT_TOKEN: ${GIT_TOKEN}
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://localhost:8071/actuator/health || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  consul:
+    image: kaeldev/consul:latest
+    mem_limit: 700m
+    container_name: consul
+    ports:
+      - "8500:8500"
+    command: "agent -dev -client=0.0.0.0"
+    healthcheck:
+      test: [ "CMD", "wget", "-qO-", "http://localhost:8500/v1/status/leader" ]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    depends_on:
+      config-server:
+        condition: service_healthy
+    networks:
+      - fitnetwork-network
+
+  mysql:
+    image: mysql:8
+    mem_limit: 700m
+    container_name: mysql-fitnetwork_bd
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3308:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - fitnetwork-network
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  user-service:
+    image: kael/fitnetwork-user-service
+    container_name: user-service
+    mem_limit: 700m
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    depends_on:
+      config-server:
+        condition: service_healthy
+      mysql:
+        condition: service_healthy
+      consul:
+        condition: service_healthy
+    environment:
+      #SPRING_PROFILES_ACTIVE: docker
+      SPRING_CLOUD_CONFIG_URI: http://config-server:8071
+    networks:
+      - fitnetwork-network
+
+#  webapp:
+#    image: kael/fitnetwork-webapp
+#    container_name: webapp
+#    mem_limit: 700m
+#    restart: on-failure
+#    ports:
+#      - "8090:8090"
+#    depends_on:
+#      config-server:
+#        condition: service_healthy
+#      consul:
+#        condition: service_healthy
+#      patients:
+#        condition: service_started
+#    networks:
+#      - fitnetwork-network
+
+volumes:
+  mysql_data:
+
+networks:
+  fitnetwork-network:
+    driver: "bridge"
