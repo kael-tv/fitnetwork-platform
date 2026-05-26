@@ -10,3 +10,5 @@ spring:
           uri: https://github.com/kael-tv/fitnetwork-config
           default-label: main
           clone-on-start: true
+          username: ${GIT_USERNAME}
+          password: ${GIT_TOKEN}

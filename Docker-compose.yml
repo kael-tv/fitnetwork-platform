@@ -44,8 +44,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      #TODO Add User and Password for user
     ports:
       - "3308:3306"
     volumes:
@@ -76,6 +75,8 @@ services:
     environment:
       #SPRING_PROFILES_ACTIVE: docker
       SPRING_CLOUD_CONFIG_URI: http://config-server:8071
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_DB_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_DB_PASSWORD}
     networks:
       - fitnetwork-network
 
