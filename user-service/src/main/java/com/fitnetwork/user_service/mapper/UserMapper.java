@@ -50,12 +50,25 @@ public class UserMapper {
                 dto.setLevel(user.getLevel());
                 dto.setAvatarUrl(user.getAvatarUrl());
                 dto.setStatusMessage(user.getStatusMessage());
-                dto.setProfileVisibility(user.getProfileVisibility());
+                dto.setProfileVisibility(user.isProfileVisibility());
                 dto.setCreatedAt(user.getCreatedAt());
                 dto.setRole(user.getRole());
 
                 return dto;
 
+        }
+
+        //Update
+        public void updateEntity(User existing, UserUpdateRequestDto dto) {
+                existing.setUsername(dto.getUsername());
+                existing.setBirthdayDate(dto.getBirthdayDate());
+                existing.setHeight(dto.getHeight());
+                existing.setWeight(dto.getWeight());
+                existing.setGender(dto.getGender());
+                existing.setLevel(dto.getLevel());
+                existing.setAvatarUrl(dto.getAvatarUrl());
+                existing.setStatusMessage(dto.getStatusMessage());
+                existing.setProfileVisibility(dto.isProfileVisibility());
         }
 
         private Integer calculateAge(LocalDate birthdayDate) {

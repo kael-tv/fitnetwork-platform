@@ -28,4 +28,5 @@ public class UserUpdateRequestDto {
         private User.Level level;
         private String avatarUrl;
         private String statusMessage;
+        private boolean profileVisibility;
 }
