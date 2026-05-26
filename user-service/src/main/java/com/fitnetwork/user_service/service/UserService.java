@@ -76,16 +76,8 @@ public class UserService {
         //UPDATE
         public UserProfileResponseDto updateUser(Long id, UserUpdateRequestDto dto) {
                 User existing = userRepository.findById(id)
-                        .orElseThrow(()-> new ResourceNotFoundException("User not found with id: " + id));
-                existing.setUsername(dto.getUsername());
-                existing.setBirthdayDate(dto.getBirthdayDate());
-                existing.setHeight(dto.getHeight());
-                existing.setWeight(dto.getWeight());
-                existing.setGender(dto.getGender());
-                existing.setLevel(dto.getLevel());
-                existing.setAvatarUrl(dto.getAvatarUrl());
-                existing.setStatusMessage(dto.getStatusMessage());
-
+                        .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
+                userMapper.updateEntity(existing, dto);
                 return userMapper.toProfileResponseDto(userRepository.save(existing));
         }
 

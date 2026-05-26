@@ -31,7 +31,7 @@ public class User {
         private Level level;
         private String avatarUrl;
         private String statusMessage;
-        private Boolean profileVisibility;
+        private boolean profileVisibility;
 
         @Enumerated(EnumType.STRING)
         private Role role;
