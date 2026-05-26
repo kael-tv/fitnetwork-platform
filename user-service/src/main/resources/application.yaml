@@ -1,19 +1,6 @@
 spring:
   application:
     name: user-service
-  datasource:
-    url: jdbc:mysql://localhost:3306/fitnetwork
-    #Var must be initialized in windows's terminal (and type "mvn spring-boot run") or in edit configurations from Intellij Ide. Docker compose is .env friendly natively
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-  cloud:
-    consul:
-      enabled: false
-    config:
-      enabled: false
 
+  config:
+    import: configserver:http://config-server:8071
