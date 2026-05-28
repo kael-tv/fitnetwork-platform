@@ -1,4 +1,4 @@
-package com.fitnetwork.user_service.security;
+package com.fitnetwork.webapp.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

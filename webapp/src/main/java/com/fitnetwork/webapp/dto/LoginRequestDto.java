@@ -1,4 +1,10 @@
-package com.fitnetwork.webapp.dto;
+        package com.fitnetwork.webapp.dto;
 
-public class LoginRequestDto {
-}
+        import lombok.Data;
+
+        @Data
+        public class LoginRequestDto {
+
+                private String login; //Email or username
+                private String password;
+        }
